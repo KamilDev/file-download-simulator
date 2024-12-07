@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Download Simulator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>File Download Simulator</h1>
+      <p class="description">
+        Test how your files behave when downloaded through a web browser,
+        without the delay of a real network transfer.
+      </p>
+      <div class="upload-area">
+        <input type="file" id="fileInput" class="file-input" />
+        <label for="fileInput" class="file-label" role="button" tabindex="0" autofocus> Choose any file </label>
+      </div>
+      <div id="fileInfo" class="file-info"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
