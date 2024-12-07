@@ -94,7 +94,7 @@ h1 {
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.3s;
 }
 
 .file-label:hover {
