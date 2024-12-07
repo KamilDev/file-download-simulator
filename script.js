@@ -1,32 +1,73 @@
 document.addEventListener("DOMContentLoaded", () => {
   const fileInput = document.getElementById("fileInput");
   const fileInfo = document.getElementById("fileInfo");
+  const downloadList = document.getElementById("downloadList");
   const fileLabel = document.querySelector(".file-label");
 
-  function handleFile(file) {
-    if (!file) return;
+  function formatFileSize(bytes) {
+    if (bytes === 0) return "0 B";
+    const k = 1024;
+    const sizes = ["B", "KB", "MB", "GB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return `${(bytes / Math.pow(k, i)).toFixed(1)} ${sizes[i]}`;
+  }
 
-    // Display file information
-    const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
-    fileInfo.textContent = `Selected: ${file.name} (${fileSizeMB} MB)`;
+  function handleFiles(files) {
+    if (!files || files.length === 0) return;
 
-    // Create a blob URL and trigger download immediately
-    const blobUrl = URL.createObjectURL(file);
-    const link = document.createElement("a");
-    link.href = blobUrl;
-    link.download = file.name;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Clear previous downloads
+    downloadList.innerHTML = "";
 
-    // Clean up
-    URL.revokeObjectURL(blobUrl);
+    // Start downloads
+    Array.from(files).forEach((file) => {
+      const blobUrl = URL.createObjectURL(file);
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = file.name;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(blobUrl);
+    });
+
+    // Display summary
+    const totalSize = Array.from(files).reduce(
+      (acc, file) => acc + file.size,
+      0
+    );
+    fileInfo.textContent = `Downloaded ${files.length} file${
+      files.length === 1 ? "" : "s"
+    } (${formatFileSize(totalSize)} total)`;
+
+    // Update UI for each file
+    Array.from(files).forEach((file) => {
+      const downloadItem = document.createElement("div");
+      downloadItem.className = "download-item";
+
+      const nameSpan = document.createElement("span");
+      nameSpan.className = "download-item-name";
+      nameSpan.textContent = file.name;
+
+      const sizeSpan = document.createElement("span");
+      sizeSpan.className = "download-item-size";
+      sizeSpan.textContent = formatFileSize(file.size);
+
+      downloadItem.appendChild(nameSpan);
+      downloadItem.appendChild(sizeSpan);
+      downloadList.insertBefore(downloadItem, downloadList.firstChild);
+    });
+
     fileInput.value = ""; // Reset file input
+  }
+
+  function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
   }
 
   // Handle file input change
   fileInput.addEventListener("change", (e) => {
-    handleFile(e.target.files[0]);
+    handleFiles(e.target.files);
   });
 
   // Make file input keyboard accessible
@@ -42,11 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener(eventName, preventDefaults, false);
   });
 
-  function preventDefaults(e) {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
   // Handle drag and drop
   document.body.addEventListener("dragenter", () => {
     document.body.classList.add("dragging");
@@ -60,7 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.body.addEventListener("drop", (e) => {
     document.body.classList.remove("dragging");
-    const file = e.dataTransfer.files[0];
-    handleFile(file);
+    handleFiles(e.dataTransfer.files);
   });
 });

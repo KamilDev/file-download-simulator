@@ -20,7 +20,7 @@
         without the delay of a real network transfer.
       </p>
       <div class="upload-area">
-        <input type="file" id="fileInput" class="file-input" />
+        <input type="file" id="fileInput" class="file-input" multiple />
         <label
           for="fileInput"
           class="file-label"
@@ -28,10 +28,11 @@
           tabindex="0"
           autofocus
         >
-          Choose any file
+          Choose any files
         </label>
       </div>
       <div id="fileInfo" class="file-info"></div>
+      <div id="downloadList" class="download-list"></div>
     </div>
     <script src="script.js"></script>
   </body>
