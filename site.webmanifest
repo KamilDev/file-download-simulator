@@ -1,36 +1,21 @@
 {
-  "name": "File Download Simulator",
-  "short_name": "Download Simulator",
-  "icons": [
-    {
-      "src": "./android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "./android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "./android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
-      "src": "./android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
-    }
-  ],
-  "theme_color": "#f5f5f5",
-  "background_color": "#f5f5f5",
-  "theme_color_dark": "#1a1a1a",
-  "background_color_dark": "#1a1a1a",
-  "display": "standalone",
-  "orientation": "any"
+    "name": "File Download Simulator",
+    "short_name": "Download Simulator",
+    "icons": [
+      {
+        "src": "./android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "./android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any"
+      }
+    ],
+    "theme_color": "#1a1a1a",
+    "background_color": "#1a1a1a",
+    "display": "standalone"
 }
