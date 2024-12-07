@@ -1,8 +1,8 @@
 # File Download Simulator
 
-**[URL will be added after GitHub Pages deployment]**
+**[🔗 Try it here](https://kamildev.github.io/file-download-simulator/)**
 
-A simple web app that lets you test how files behave when downloaded through a browser. Features drag-and-drop, dark mode support, and a clean interface.
+A simple web app that lets you test how files behave when downloaded through a browser, without the delay of a real network transfer. Features drag-and-drop, dark mode support, and a clean interface.
 
 ## Usage
 
